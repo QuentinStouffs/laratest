@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('salut/{name}', function($name){
+    return 'salut '.$name;
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
