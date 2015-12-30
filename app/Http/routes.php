@@ -10,13 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix'=>'admin', 'middleware' => 'ip'],function(){ 
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
 Route::get('salut/{name}', function($name){
     return 'salut '.$name;
 });
+Route::get('slug/{slug}-{id}', ['as' => 'slug', function($slug, $id){
+   return 'lien:'.route('slug', ['slug' => $slug, 'id' => $id]); 
+}])->where('slug', '[aA-zZ0-9\-]+')->where('id', '[0-9]+');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
