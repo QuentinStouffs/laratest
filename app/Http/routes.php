@@ -10,11 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['prefix'=>'admin', 'middleware' => 'ip'],function(){ 
+Route::group(['prefix'=>'admin'], function(){ 
     Route::get('/', function () {
         return view('welcome');
     });
 });
+Route::get('Welcome', 'Welcome@index');
 Route::get('salut/{name}', function($name){
     return 'salut '.$name;
 });
@@ -31,6 +32,8 @@ Route::get('slug/{slug}-{id}', ['as' => 'slug', function($slug, $id){
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::Controller('welcome', 'Welcome');
+Route::get('a-propos', ['as' => 'about', 'uses' => 'PagesController@about']);
 
 Route::group(['middleware' => ['web']], function () {
     //
