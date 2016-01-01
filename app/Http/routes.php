@@ -19,6 +19,10 @@ Route::get('Welcome', 'Welcome@index');
 Route::get('salut/{name}', function($name){
     return 'salut '.$name;
 });
+Route::get('bootstrap', function(){
+    return view('vue1'); 
+});
+Route::get('article/{n}', 'articleController@show')->where('n', '[0-9]+');
 Route::get('slug/{slug}-{id}', ['as' => 'slug', function($slug, $id){
    return 'lien:'.route('slug', ['slug' => $slug, 'id' => $id]); 
 }])->where('slug', '[aA-zZ0-9\-]+')->where('id', '[0-9]+');
